@@ -1,4 +1,4 @@
-package br.com.sejadoador.sejadoador;
+package com.hemocentro.sejadoador;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
