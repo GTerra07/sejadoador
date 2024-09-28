@@ -5,6 +5,10 @@ import com.hemocentro.sejadoador.service.UsuarioService;
 import com.hemocentro.sejadoador.exception.UsuarioExistenteException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -27,6 +31,8 @@ public class UsuarioController {
         }
     }
 
+    @Autowired
+    private AuthenticationManager authenticationManager;
     // Método para realizar login
     @PostMapping("/login")
     public ResponseEntity<Usuario> login(@RequestParam String email, @RequestParam String senha) {
@@ -37,6 +43,7 @@ public class UsuarioController {
 
     @PostMapping("/recuperar-senha")
     public ResponseEntity<String> recuperarSenha(@RequestParam String cpf, @RequestParam String novaSenha) {
+        System.out.println("PASSOU");
         try {
             boolean sucesso = usuarioService.recuperarSenha(cpf, novaSenha);
             if (sucesso) {
