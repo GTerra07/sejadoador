@@ -4,6 +4,11 @@ import com.hemocentro.sejadoador.model.Usuario;
 import com.hemocentro.sejadoador.repository.UsuarioRepository;
 import com.hemocentro.sejadoador.exception.UsuarioExistenteException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -25,7 +30,13 @@ public class UsuarioService {
 
     // Método para realizar o login
     public Optional<Usuario> login(String email, String senha) {
-        Optional<Usuario> usuarioOpt = usuarioRepository.findByEmail(email);
+
+        var teste = new Usuario();
+        teste.setId(email);
+        teste.setEmail(email);
+        teste.setSenha(senha);
+        Optional<Usuario> usuarioOpt = Optional.of(teste);
+        //Optional<Usuario> usuarioOpt = usuarioRepository.findByEmail(email);
         if (usuarioOpt.isPresent()) {
             Usuario usuario = usuarioOpt.get();
             // Valida se a senha informada bate com a armazenada (sem criptografia).
