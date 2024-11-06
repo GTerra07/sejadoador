@@ -1,5 +1,7 @@
 package com.hemocentro.sejadoador.controller;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,5 +17,6 @@ public class ExameController {
             return ResponseEntity.badRequest().body("Arquivo não enviado.");
         }
         return ResponseEntity.ok("Exame enviado com sucesso.");
+        
     }
 }

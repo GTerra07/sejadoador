@@ -1,0 +1,39 @@
+### Teste de GET - Obter todos os usuários
+GET http://localhost:8080/usuario
+Content-Type: application/json
+
+###
+
+### Teste de GET - Obter um usuário por ID
+GET http://localhost:8080/usuario/{id}
+Content-Type: application/json
+
+###
+
+### Teste de POST - Criar um novo usuário
+POST http://localhost:8080/usuario
+Content-Type: application/json
+
+{
+    "nome": "João da Silva",
+    "email": "joao.silva@email.com",
+    "senha": "123456"
+}
+
+###
+
+### Teste de PUT - Atualizar um usuário
+PUT http://localhost:8080/usuario/{id}
+Content-Type: application/json
+
+{
+    "nome": "João da Silva",
+    "email": "joao.silva@novoemail.com",
+    "senha": "nova_senha"
+}
+
+###
+
+### Teste de DELETE - Deletar um usuário
+DELETE http://localhost:8080/usuario/{id}
+Content-Type: application/json

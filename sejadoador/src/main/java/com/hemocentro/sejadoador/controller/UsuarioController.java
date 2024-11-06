@@ -3,12 +3,12 @@ package com.hemocentro.sejadoador.controller;
 import com.hemocentro.sejadoador.model.Usuario;
 import com.hemocentro.sejadoador.service.UsuarioService;
 import com.hemocentro.sejadoador.exception.UsuarioExistenteException;
+import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -42,10 +42,10 @@ public class UsuarioController {
     }
 
     @PostMapping("/recuperar-senha")
-    public ResponseEntity<String> recuperarSenha(@RequestParam String cpf, @RequestParam String novaSenha) {
+    public ResponseEntity<String> recuperarSenha(@RequestBody @Valid RecuperaSenhaBody recuperaSenha) {
         System.out.println("PASSOU");
         try {
-            boolean sucesso = usuarioService.recuperarSenha(cpf, novaSenha);
+            boolean sucesso = usuarioService.recuperarSenha(recuperaSenha.getCpf(), recuperaSenha.getNovaSenha());
             if (sucesso) {
                 return ResponseEntity.ok("Senha alterada com sucesso.");
             } else {
